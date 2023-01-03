@@ -21,17 +21,17 @@ Endepunktet `/api/open/v1/{SourceId}/table/{tableId}` kan brukes for å hente in
 
 Formatet på responsen er det samme som når en bruker endepunktet 'Hent tabeller'.
 ### Hent spørring
-Endepunktet `/api/open/v1/{SourceId}/Table/{TableId}/query` kan brukes for å hente ut en spørring for å hente ut data. Responsen fra dette endepunktet vil returnere en spørring i JSON-format som 
+Endepunktet `/api/open/v1/{SourceId}/Table/{tableId}/query` kan brukes for å hente ut en spørring for å hente ut data. Responsen fra dette endepunktet vil returnere en spørring i JSON-format som 
 inneholder alle kategorier for alle dimensjoner og alle måltall. Hvert filtervalg kalles en dimensjon og verdiene en dimensjon kan ha, kalles kategorier. Eksempler på dimensjoner kan være "AAR" 
 for årstall og "GEO" for geografi og kategorier kan for årstall være for eksempel "2020" eller "2021". Måltall vil listes som dimensjon "MEASURE_TYPE" der hvert enkelt måltall er en kategori.
 
 Responsen fra dette endepunktet kan kopieres og brukes som request body i endepunktet for å hente data. 
 ### Hent dimensjoner
-Endepunktet `/api/open/v1/{SourceId}/Table/{TableId}/dimension` kan brukes for å hente ut informasjon om alle dimensjoner og tilhørende kategorier for en tabell. 
+Endepunktet `/api/open/v1/{SourceId}/Table/{tableId}/dimension` kan brukes for å hente ut informasjon om alle dimensjoner og tilhørende kategorier for en tabell. 
 
 Responsen her vil være informasjon i JSON-format som i tillegg til informasjonen som returneres når en henter en spørring, inneholde etikett/label for alle dimensjoner og kategorier.
 ### Hent data
-Endepunktet `/api/open/v1/{SourceId}/Table/{TableId}/data` kan brukes for å hente verdier for måltall for en tabell. Her må det sendes inn en request body i JSON-format der hver dimensjon i 
+Endepunktet `/api/open/v1/{SourceId}/Table/{tableId}/data` kan brukes for å hente verdier for måltall for en tabell. Her må det sendes inn en request body i JSON-format der hver dimensjon i 
 tabellen må spesifiseres med et filter. 
 
 Et eksempel på request body som viser formatet er: 
@@ -88,17 +88,28 @@ Her kan en spesifisere filter med jokertegn '*'. En kan liste opp flere filterve
 vil alle kategorier velges.
 #### Respons formater
 ##### json-stat2
-Returnerer json objekt[Beskrivelse av JSON-stat standarden](https://json-stat.org/format/)
+Returnerer json objekt som følger JSON-stat standarden. [JSON-stat](https://json-stat.org/format/) standarden er et format for vise statistiske tabeller. 
 Responsen fra spørringer i dette formatet kan limes inn i [JSON-stat explorer](http://jsonstat.com/explorer/) for å se på dataene i et lesevennlig format.
 ##### csv2
 Returnerer csv-fil med lesbare etiketter for dimensjoner og måltall.
 ##### csv3
 Returnerer csv-fil med koder for dimensjoner og måltall.
+### Spesialtegn/Flagging
+Endepunktet `/api/open/v1/{SourceId}/Table/{tableId}/flag` kan brukes for å hente ut informasjon om spesialtegn eller flagg som brukes for de kombinasjonene kategorier der måltallet ikke kan vises.
+Typiske årsaker til at verdier flagges, kan være manglende data, at verdien ikke lar seg beregne eller at verdien er skjult av personvernhensyn.
+Responsen her vil være informasjon i JSON-format som i tillegg til informasjonen som returneres når en henter en spørring, inneholde etikett/label for alle dimensjoner og kategorier.
+### Metadata
+Endepunktet `/api/open/v1/{SourceId}/Table/{tableId}/metadata` kan brukes for å hente ut metadata for tabellen. Responsen inneholder en liste over seksjoner med metadata. 
+Hver seksjon inneholder en overskrift og en innholdsdel. Det vil være seksjoner som er lagt inn av redaktøren for kilden for å beskrive innholdet i tabellen samt seksjoner som gir oversikt over de 
+ulike dimensjonene og tilhørende kategorier.
+### Sist oppdatert
+Endepunktet `/api/open/v1/{SourceId}/Table/{tableId}/metadata/lastUpdated` kan brukes for å hente ut tidspunkt for siste oppdatering av tabellen.
+## Returkoder/Feilmeldinger
+### 200 Ok
+Returkode 200 indikerer at kallet er utført med suksess.
 
+### 400 Bad Request
+Returkode 400 returneres om det er feil i syntaksen i spørringen. Mer detaljer om feilen vil returneres i status-feltet i responsen.
 
-## Metadata
-Skal vi ta med dette?
-## Spesialtegn/Flagging
-Skal vi ta med dette?
-
-## Feilmeldinger
+### 404 Not Found
+Returkode 404 returneres om det spørres etter data som ikke finnes. Mer detaljer om feilen vil returneres i status-feltet i responsen.
