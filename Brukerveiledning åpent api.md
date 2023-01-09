@@ -81,11 +81,11 @@ This filter specifies exactly which catagories to pull data for. You must list a
 ##### Top
 This filter specifies the number of categories to pull data for by supplying an integer with value 1 or larger. For example, if the integer 5 is provided, data will be pulled for the first 5 categories.
 ##### All
-Here one can speficy the filter with an asterisk '*'. By listing up multiple values, for example `["A*","B*"]`, data will be pulled for all catagories that start with 'A' or 'B'. To pull data for all categories use `["*"]`. 
+Here one can specify the filter with an asterisk '*'. By listing up multiple values, for example `["A*","B*"]`, data will be pulled for all catagories that start with 'A' or 'B'. To pull data for all categories use `["*"]`. 
 
 #### Respons formats
 ##### json-stat2
-Returns a JSON object that follows the JSON-stat standard [JSON-stat](https://json-stat.org/format/) the standard is a format that for showing statistical tables. 
+Returns a JSON object that follows the JSON-stat standard [JSON-stat](https://json-stat.org/format/) the standard is a format for showing statistical tables. 
 Responses from queries in this format can be pasted into [JSON-stat explorer](http://jsonstat.com/explorer/) to view data in a more readable format. 
 ##### csv2
 Returns csv-file with readable lables for dimensions and measures. 
