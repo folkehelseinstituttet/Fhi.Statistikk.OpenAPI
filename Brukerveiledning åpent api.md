@@ -1,27 +1,26 @@
-# Brukerveiledning Åpent API for FHI Statistikk
+# User manual FHI Statistikk Open API
 
-## Beskrivelse/Innledning
-Åpent API for FHI Statistikk tilbyr ulike endepunkter for å hente ut data for de kildene som har lagt sine data ut i FHI Statistikk. Eksempler på kilder...
+## Introduction
+FHI Statistikk Open API offer endpoints to get data for sources that has published their data using the FHI Statistikk. Example sources ...
 
 ## Swagger
-API'et er dokumentert i [Swagger](link). Denne siden kan også brukes til å hente ut data fra API'et.
+The API is documented in [Swagger](link). This page can also be used to get from the API.
 
-## Beskrivelse av endepunkter
-### Hent kilder
-Endepunktet `/api/open/v1/Common/source` kan brukes for å liste opp ulike kilder. 
+## Endpoints
+### Get sources
+The endpoint `/api/open/v1/Common/source` can be used to get a list of the different sources. 
 
-Id i responson fra dette endepunktet brukes som SourceId i alle andre endepunkter i API'et.
-### Hent tabeller
-Endepunktet `/api/open/v1/{SourceId}/table` kan brukes for å liste opp de ulike tabellene for en kilde. Det er også mulig å legge inn et filter modifiedAfter for å liste opp de 
-tabellene som er oppdatert etter en gitt tid.
+Id in the response from this endpoint is used as SourceId parameter in all other endpoints in the API.
+### Get tables
+The endpoint `/api/open/v1/{SourceId}/table` can be used to get a list of published tables from a source. An optional parameter, modifiedAfter, can be used to only list tables modified after a certain datetime.
 
-TableId i responsen fra dette endepunktet brukes sammen med SourceId i de andre endepunktene i API'et.
-### Hent tabell
-Endepunktet `/api/open/v1/{SourceId}/table/{tableId}` kan brukes for å hente informasjon om en enkelt tabell.
+TableId in the  response from this endpoint is used together with SourceId in all the endpoints described below.
+### Get table
+The endpoint `/api/open/v1/{SourceId}/table/{tableId}` can be used to get information about a specific table.
 
-Formatet på responsen er det samme som når en bruker endepunktet 'Hent tabeller'.
-### Hent spørring
-Endepunktet `/api/open/v1/{SourceId}/Table/{tableId}/query` kan brukes for å hente ut en spørring for å hente ut data. Responsen fra dette endepunktet vil returnere en spørring i JSON-format som 
+The format of the response is the same as for the endpoint 'Get tables'.
+### Get query
+The endpoint `/api/open/v1/{SourceId}/Table/{tableId}/query` kan brukes for å hente ut en spørring for å hente ut data. Responsen fra dette endepunktet vil returnere en spørring i JSON-format som 
 inneholder alle kategorier for alle dimensjoner og alle måltall. Hvert filtervalg kalles en dimensjon og verdiene en dimensjon kan ha, kalles kategorier. Eksempler på dimensjoner kan være "AAR" 
 for årstall og "GEO" for geografi og kategorier kan for årstall være for eksempel "2020" eller "2021". Måltall vil listes som dimensjon "MEASURE_TYPE" der hvert enkelt måltall er en kategori.
 
