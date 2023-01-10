@@ -1,4 +1,4 @@
-# User manual FHI Statistikk Open API
+# User Guide FHI Statistikk Open API
 
 ## Introduction
 FHI Statistikk Open API offer endpoints to get data for sources which have published their data using FHI Statistikk. Example sources ...
