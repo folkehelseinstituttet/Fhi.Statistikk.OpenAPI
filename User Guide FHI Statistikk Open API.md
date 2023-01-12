@@ -20,11 +20,11 @@ The endpoint `/api/open/v1/{SourceId}/table/{tableId}` can be used to get inform
 
 The response format is the same as for the endpoint 'Get tables'.
 ### Get query
-The endpoint `/api/open/v1/{SourceId}/Table/{tableId}/query` can be used to get the request body that is used for the Get data endpoint. The response from this endpoint will be in JSON format, and will contain categories for all dimensions and all measures. 
+The endpoint `/api/open/v1/{SourceId}/Table/{tableId}/query` can be used to get the request body for getting data from the table (Get data endpoint). The response from this endpoint will be in JSON format, and will contain categories for all dimensions and all measures. 
 
 Each filter choice is called a dimension and the values that a dimension can have are called categories. Examples of dimensions would be 'AAR' for years or 'GEO' for geography. Examples of categories would be '2020' or '2021' for years. Measures will be listed up under the dimension 'MEASURE_TYPE', where each measure is its own category. 
 
-The response from this endpoint can be copied and used as the request body for the 'Get data' endpoint.
+The response from this endpoint can be copied and used as the request body for the 'Get data' endpoint to get the whole dataset (all values of the measures in the table), or adjusted to contain just subset of categories and measures and used to get the subset of the whole dataset. 
 ### Get dimensions
 The endpoint `/api/open/v1/{SourceId}/Table/{tableId}/dimension` can be used to get information about the dimensions and the corresponding categories for a table. 
 The response, in JSON format, contains the labels for all dimensions and categories for a table. 
@@ -93,10 +93,10 @@ Returns csv-file with readable lables for dimensions and measures.
 Returns csv-file with codes for dimensions and measures. 
 ### Special sympols/flags
 The endpoint `/api/open/v1/{SourceId}/Table/{tableId}/flag` can be used to get information about the special sympols or flags which are used for certain combinations of categories where the measure values can not be shown. Typical reasons why a value is flagged are missing data, the value is not possible to calculate or it has been removed for privacy considerations.
-### Metadata
+### Get metadata
 The endpoint `/api/open/v1/{SourceId}/Table/{tableId}/metadata` can be used to get metadata for a table. The response contains a list of the metadata sections. Each section contains title and content. 
 The sections are added by an editor for the source and describe the contents of the table. The list will also contain sections for the dimensions of the table with categories for the dimension as content. 
-### Last updated
+### Get last updated
 The endpoint `/api/open/v1/{SourceId}/Table/{tableId}/metadata/lastUpdated` can be used to get the timestamp for the last time a table was updated. 
 ## Status codes/Error messages
 ### 200 Ok
