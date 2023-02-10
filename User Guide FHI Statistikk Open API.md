@@ -31,47 +31,50 @@ The response, in JSON format, contains the labels for all dimensions and categor
 ### Get data
 The endpoint `/api/open/v1/{SourceId}/Table/{tableId}/data` can be used to get values of the measures in a table. The request body needs to be in JSON format where each dimension in the table is specified with a filter. 
 
-Example of a request body:
-```json
-{
-  "dimensions": [
-    {
-      "code": "AAR",
-      "filter": "item",
-      "values": [
-        "2020",
-        "2021"
-      ]
-    },
-    {
-      "code": "INDIKATOR",
-      "filter": "all",
-      "values": [
-        "A*",
-        "B*"
-      ]
-    },
-    {
-      "code": "GEO",
-      "filter": "top",
-      "values": [
-        "2"
-      ]
-    },
-    {
-      "code": "MEASURE_TYPE",
-      "filter": "item",
-      "values": [
-        "TELLER",
-        "RATE"
-      ]
+<details>
+  <summary>Example of a request body</summary>
+
+  ```json
+  {
+    "dimensions": [
+      {
+        "code": "AAR",
+        "filter": "item",
+        "values": [
+          "2020_2020",
+          "2021_2021"
+        ]
+      },
+      {
+        "code": "INDIKATOR",
+        "filter": "all",
+        "values": [
+          "A*",
+          "B*"
+        ]
+      },
+      {
+        "code": "GEO",
+        "filter": "top",
+        "values": [
+          "2"
+        ]
+      },
+      {
+        "code": "MEASURE_TYPE",
+        "filter": "item",
+        "values": [
+          "TELLER",
+          "RATE"
+        ]
+      }
+    ],
+    "response": {
+      "format": "json-stat2"
     }
-  ],
-  "response": {
-    "format": "json-stat2"
   }
-}
-```
+  ```
+</details>
 #### Filters
 The supported filters are 'item', 'top' and 'all'. All dimension must have one and only one specified filter type, but different dimensions can use different filters in the same request. The dimension for measures, 'MEASURE_TYPE', supports the same filters as the other dimensions. 
 
@@ -83,13 +86,114 @@ This filter specifies the number of categories to pull data for by supplying an 
 ##### All
 With this filter one can specify matches with wildchar '*'. By listing up multiple values, for example `["A*","B*"]`, data will be pulled for all catagories that start with 'A' or 'B'. To pull data for all categories use `["*"]`. 
 
-#### Response formats
-##### json-stat2
+#### Response
+##### Response formats
+###### json-stat2
 Returns a JSON object that follows the [JSON-stat](https://json-stat.org/format/) standard. This is a format for showing statistical tables. 
 Responses from queries in this format can be pasted into the [JSON-stat explorer](http://jsonstat.com/explorer/) to view data in a more readable format. 
-##### csv2
+
+Each dimension, has both a code, e.g. "GEO" or "AAR", and a more readable label, e.g. "Geografi" or "År". Dimension has a category section with an index list and label list. The index list contains codes for the categories returned, e.g. "03" or "2020_2020". The label list contains readable labels for the categories returned, e.g. "Oslo" and "2020".
+
+<details>
+  <summary>Example of a jsonstat response</summary>
+
+  ```json
+  {
+      "class": "dataset",
+      "version": "2.0",
+      "href": null,
+      "label": "Befolkningsvekst (B)",
+      "updated": "2022-12-20T11:44:58.7706326+00:00",
+      "source": null,
+      "id": [
+          "GEO",
+          "AAR",
+          "KJONN",
+          "ALDER",
+          "MEASURE_TYPE"
+      ],
+      "size": [
+          2,
+          2,
+          1,
+          1,
+          1
+      ],
+      "role": null,
+      "dimension": {
+          "GEO": {
+              "label": "Geografi",
+              "category": {
+                  "index": [
+                      "03",
+                      "30"
+                  ],
+                  "label": {
+                      "03": "Oslo",
+                      "30": "Viken"
+                  }
+              }
+          },
+          "AAR": {
+              "label": "År",
+              "category": {
+                  "index": [
+                      "2020_2020",
+                      "2021_2021"
+                  ],
+                  "label": {
+                      "2020_2020": "2020",
+                      "2021_2021": "2021"
+                  }
+              }
+          },
+          "KJONN": {
+              "label": "Kjønn",
+              "category": {
+                  "index": [
+                      "0"
+                  ],
+                  "label": {
+                      "0": "Kjønn samlet"
+                  }
+              }
+          },
+          "ALDER": {
+              "label": "Alder",
+              "category": {
+                  "index": [
+                      "0"
+                  ],
+                  "label": {
+                      "0": "Alle aldre"
+                  }
+              }
+          },
+          "MEASURE_TYPE": {
+              "label": "Måltall",
+              "category": {
+                  "index": [
+                      "BEFVEKST_ANT"
+                  ],
+                  "label": {
+                      "BEFVEKST_ANT": "antall"
+                  }
+              }
+          }
+      },
+      "value": [
+          3516,
+          2817,
+          11219,
+          16846
+      ],
+      "status": ""
+  }
+  ```
+</details>
+###### csv2
 Returns csv-file with readable lables for dimensions and measures. 
-##### csv3
+###### csv3
 Returns csv-file with codes for dimensions and measures. 
 ### Special sympols/flags
 The endpoint `/api/open/v1/{SourceId}/Table/{tableId}/flag` can be used to get information about the special sympols or flags which are used for certain combinations of categories where the measure values can not be shown. Typical reasons why a value is flagged are missing data, the value is not possible to calculate or it has been removed for privacy considerations.
