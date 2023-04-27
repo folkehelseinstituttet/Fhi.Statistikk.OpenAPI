@@ -70,7 +70,8 @@ The endpoint `/api/open/v1/{SourceId}/Table/{tableId}/data` can be used to get v
       }
     ],
     "response": {
-      "format": "json-stat2"
+      "format": "json-stat2",
+      "maxRowCount": 50000
     }
   }
   ```
@@ -87,6 +88,8 @@ This filter specifies the number of categories to pull data for by supplying an 
 With this filter one can specify matches with wildchar '*'. By listing up multiple values, for example `["A*","B*"]`, data will be pulled for all catagories that start with 'A' or 'B'. To pull data for all categories use `["*"]`. 
 
 #### Response
+##### MaxRowCount
+The data-endpoint will return an error if the number of values to be returned is more than specified by maxRowCount. To succesfully retieve data from the endpoint either adjust category filters to reduce the number of rows to return or increase the maxRowCount to be able to return more rows. Removing the maxRowCount from the request, will set it to infinite.
 ##### Response formats
 ###### json-stat2
 Returns a JSON object that follows the [JSON-stat](https://json-stat.org/format/) standard. This is a format for showing statistical tables. 
@@ -200,8 +203,6 @@ The endpoint `/api/open/v1/{SourceId}/Table/{tableId}/flag` can be used to get i
 ### Get metadata
 The endpoint `/api/open/v1/{SourceId}/Table/{tableId}/metadata` can be used to get metadata for a table. The response contains a list of the metadata sections. Each section contains title and content. 
 The sections are added by an editor for the source and describe the contents of the table. The list will also contain sections for the dimensions of the table with categories for the dimension as content. 
-### Get last updated
-The endpoint `/api/open/v1/{SourceId}/Table/{tableId}/metadata/lastUpdated` can be used to get the timestamp for the last time a table was updated. 
 ## Status codes/Error messages
 ### 200 Ok
 Status code 200 indicates that the request succeded.
