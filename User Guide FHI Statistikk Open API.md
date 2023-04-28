@@ -4,7 +4,7 @@
 FHI Statistikk Open API offer endpoints to get data for sources which have published their data using FHI Statistikk. Example sources ...
 
 ## Swagger
-The API is documented in [Swagger](https://app-allvis-api-prod.azurewebsites.net/swagger/index.html?urls.primaryName=Allvis%20Open%20API). This page can also be used to pull data from the API.
+The API is documented in [Swagger](https://statistikk-data.fhi.no/swagger/index.html?urls.primaryName=Allvis%20Open%20API). This page can also be used to pull data from the API.
 
 ## Endpoints
 ### Get sources
@@ -89,7 +89,7 @@ With this filter one can specify matches with wildchar '*'. By listing up multip
 
 #### Response
 ##### MaxRowCount
-The data-endpoint will return an error if the number of values to be returned is more than specified by maxRowCount. To succesfully retieve data from the endpoint either adjust category filters to reduce the number of rows to return or increase the maxRowCount to be able to return more rows. Removing the maxRowCount from the request, will set it to infinite.
+The data-endpoint will return an error if the number of values to be returned is more than specified by maxRowCount. To succesfully retrieve data from the endpoint either adjust category filters to reduce the number of rows to return, or increase the maxRowCount to be able to return more rows. Removing the maxRowCount from the request, will set it to infinite.
 ##### Response formats
 ###### json-stat2
 Returns a JSON object that follows the [JSON-stat](https://json-stat.org/format/) standard. This is a format for showing statistical tables. 
