@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 using System.Net.Http.Headers;
 using Fhi.OpenApiClient;
 
-var apiUrl = "https://app-allvis-api-dev.azurewebsites.net";
+var apiUrl = "https://statistikk-data.fhi.no";
 
 var serializerOptions = new JsonSerializerOptions()
 {
