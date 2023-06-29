@@ -113,6 +113,7 @@ The endpoint `/api/open/v1/{SourceId}/Table/{tableId}/data` can be used to get v
   }
   ```
 </details>
+
 #### Filters
 The supported filters are 'item', 'top' and 'all'. All dimension must have one and only one specified filter type, but different dimensions can use different filters in the same request. The dimension for measures, 'MEASURE_TYPE', supports the same filters as the other dimensions. 
 
@@ -231,6 +232,7 @@ Each dimension, has both a code, e.g. "GEO" or "AAR", and a more readable label,
   }
   ```
 </details>
+
 ###### csv2
 Returns csv-file with readable lables for dimensions and measures. 
 ###### csv3
