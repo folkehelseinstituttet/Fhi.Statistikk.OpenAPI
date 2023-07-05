@@ -1,31 +1,27 @@
-import requests
 import json
 import csv
+import asyncio
+import aiohttp
 
-def get_data_from_api(url):
-    try:
-        response = requests.get(url)
-        response.raise_for_status()     
-        data = response.json()          
-        return data
-    except requests.exceptions.RequestException as e:
-        print(f"Error occurred: {e}")
-        return None
+async def get_data_from_api_async(url):
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as response:
+            response.raise_for_status()
+            data = await response.json()
+            return data
 
-def get_data_from_post_endpoint(url, query):
-    try:        
+async def get_data_from_post_endpoint_async(url, query):
         query = update_query_to_return_all_measure_types_filtered_on_first_category(query)
         query["response"]["format"] = "csv3"
         headers = {"Content-Type": "application/json"}
-        response = requests.post(url, data=json.dumps(query), headers=headers)
-        response.raise_for_status()
-        csv_data = response.text
-        reader = csv.reader(csv_data.splitlines())
-        data_list = list(reader)
-        return data_list
-    except requests.exceptions.RequestException as e:
-        print(f"Error occurred: {e}")
-        return None
+
+        async with aiohttp.ClientSession() as session:
+            async with session.post(url, data=json.dumps(query), headers=headers) as response:
+                response.raise_for_status()
+                csv_data = await response.text()
+                reader = csv.reader(csv_data.splitlines())
+                data_list = list(reader)
+                return data_list
     
 def update_query_to_return_all_measure_types_filtered_on_first_category(query):
     dimensions = query["dimensions"]
@@ -43,35 +39,43 @@ def update_query_to_return_all_measure_types_filtered_on_first_category(query):
     
     return query
 
-base_url = "https://statistikk-data.fhi.no/api/open/v1/"
+async def main():
+    try:
+        base_url = "https://statistikk-data.fhi.no/api/open/v1/"
 
-# Get a list of all sources
-sources = get_data_from_api(base_url + "Common/source")
+        # Get a list of all sources
+        sources = await get_data_from_api_async(base_url + "Common/source")
 
-source_id = "nokkel"
+        source_id = "nokkel"
 
-# Get a list of all tables
-tables = get_data_from_api(base_url + source_id + "/table")
+        # Get a list of all tables
+        tables = await get_data_from_api_async(base_url + source_id + "/table")
 
-# Get a list of all tables modified after a specified datetime. This can be used to check if any tables are updated since last time data was read
-from datetime import date
-last_poll_time = date(2023, 6, 20)
-modified_tables = get_data_from_api(base_url + source_id + "/table?modifiedAfter=" + last_poll_time.strftime("%Y-%m-%d"))
+        # Get a list of all tables modified after a specified datetime. This can be used to check if any tables are updated since last time data was read
+        from datetime import date
+        last_poll_time = date(2023, 6, 20)
+        modified_tables = await get_data_from_api_async(base_url + source_id + "/table?modifiedAfter=" + last_poll_time.strftime("%Y-%m-%d"))
 
-# Get metadata for a table
-table_id = 1
-metadata = get_data_from_api(base_url + source_id + "/table/" + str(table_id) + "/metadata")
+        # Get metadata for a table
+        table_id = 1
+        metadata = await get_data_from_api_async(base_url + source_id + "/table/" + str(table_id) + "/metadata")
 
-# Get flag values for a table
-flags = get_data_from_api(base_url + source_id + "/table/" + str(table_id) + "/flag")
+        # Get flag values for a table
+        flags = await get_data_from_api_async(base_url + source_id + "/table/" + str(table_id) + "/flag")
 
-# Get dimensions for a table
-dimensions = get_data_from_api(base_url + source_id + "/table/" + str(table_id) + "/dimension")
+        # Get dimensions for a table
+        dimensions = await get_data_from_api_async(base_url + source_id + "/table/" + str(table_id) + "/dimension")
 
-# Get a sample query for a table. The sample will ask for all data for a table
-query = get_data_from_api(base_url + source_id + "/table/" + str(table_id) + "/query")
+        # Get a sample query for a table. The sample will ask for all data for a table
+        query = await get_data_from_api_async(base_url + source_id + "/table/" + str(table_id) + "/query")
 
-# Get data for a table.
-if query:    
-    data = get_data_from_post_endpoint(base_url + source_id + "/table/" + str(table_id) + "/data", query)
+        # Get data for a table.
+        if query:    
+            data = await get_data_from_post_endpoint_async(base_url + source_id + "/table/" + str(table_id) + "/data", query)
+    except aiohttp.ClientResponseError as e:
+        print(f"Request failed with status {e.status}: {e.message}")
+    except aiohttp.ClientError as e:
+        print(f"Error occurred: {e}")    
 
+loop = asyncio.get_event_loop()
+loop.run_until_complete(main())
