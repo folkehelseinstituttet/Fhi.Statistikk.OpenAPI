@@ -31,6 +31,7 @@
 - [Code samples](#code-samples)
   - [C#](#c)
   - [Kotlin](#kotlin)
+  - [Python](#python)
 
 
 
@@ -257,3 +258,6 @@ Status code 404 indicates that the data that was requested does not exist. Furth
 
 ## Kotlin
 [FhiOpenApiClient](https://github.com/folkehelseinstituttet/Fhi.Statistikk.OpenAPI/tree/main/Code_samples/Kotlin/FhiOpenApiClient)
+
+## Python
+[fhi_open_api_client.py](https://github.com/folkehelseinstituttet/Fhi.Statistikk.OpenAPI/tree/main/Code_samples/Python/fhi_open_api_client.py)
