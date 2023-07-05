@@ -21,7 +21,6 @@ var host = Host.CreateDefaultBuilder(args)
         services.AddTransient<FhiOpenApiService>();
         services.AddHttpClient("FHI-Open-API", c =>
         {
-            //c.Timeout = new TimeSpan(0, 0, 0, 10);
             c.BaseAddress = new Uri(apiUrl);
             c.DefaultRequestHeaders.Accept.Clear();
             c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -37,15 +36,15 @@ var sources = await fhiOpenApiService.GetSourcesAsync();
 
 var sourceId = "nokkel";
 
-//Get a list of all sources
+//Get a list of all tables
 var tables = await fhiOpenApiService.GetTablesAsync(sourceId);
 
-//Get a list of all sources modified after a specified datetime. This can be used to check if any tables are updated since last time data was read
+//Get a list of all tables modified after a specified datetime. This can be used to check if any tables are updated since last time data was read
 var lastPollTime = new DateTime(2023, 6, 14);
 var modifiedTables = await fhiOpenApiService.GetTablesAsync(sourceId, lastPollTime);
 
 //Get metadata for a table
-var tableId = 3;
+var tableId = 1;
 var metadata = await fhiOpenApiService.GetMetadataAsync(sourceId, tableId);
 
 //Get flag values for a table
