@@ -36,10 +36,10 @@ var sources = await fhiOpenApiService.GetSourcesAsync();
 
 var sourceId = "nokkel";
 
-//Get a list of all tables
+//Get a list of all tables for a source
 var tables = await fhiOpenApiService.GetTablesAsync(sourceId);
 
-//Get a list of all tables modified after a specified datetime. This can be used to check if any tables are updated since last time data was read
+//Get a list of all tables for a source modified after a specified datetime. This can be used to check if any tables are updated since last time data was read
 var lastPollTime = new DateTime(2023, 6, 14);
 var modifiedTables = await fhiOpenApiService.GetTablesAsync(sourceId, lastPollTime);
 
