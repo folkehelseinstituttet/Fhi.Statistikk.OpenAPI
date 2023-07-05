@@ -21,7 +21,6 @@ var host = Host.CreateDefaultBuilder(args)
         services.AddTransient<FhiOpenApiService>();
         services.AddHttpClient("FHI-Open-API", c =>
         {
-            //c.Timeout = new TimeSpan(0, 0, 0, 10);
             c.BaseAddress = new Uri(apiUrl);
             c.DefaultRequestHeaders.Accept.Clear();
             c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
