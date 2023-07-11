@@ -1,0 +1,204 @@
+{
+	"info": {
+		"_postman_id": "36043ec8-8dbe-4719-9dab-6b6cf78ee76b",
+		"name": "FHI Statistikk Open API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19113278"
+	},
+	"item": [
+		{
+			"name": "Hent kilder",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}/api/open/v1/Common/source",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"api",
+						"open",
+						"v1",
+						"Common",
+						"source"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Hent tabeller",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}/api/open/v1/{{SourceId}}/table?modifiedAfter=2023-06-14",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"api",
+						"open",
+						"v1",
+						"{{SourceId}}",
+						"table"
+					],
+					"query": [
+						{
+							"key": "modifiedAfter",
+							"value": "2023-06-14"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Hent tabell",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}/api/open/v1/{{SourceId}}/table/{{TableId}}",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"api",
+						"open",
+						"v1",
+						"{{SourceId}}",
+						"table",
+						"{{TableId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Hent metadata",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}/api/open/v1/{{SourceId}}/table/{{TableId}}/metadata",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"api",
+						"open",
+						"v1",
+						"{{SourceId}}",
+						"table",
+						"{{TableId}}",
+						"metadata"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Hent tegnforklaringer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}/api/open/v1/{{SourceId}}/table/{{TableId}}/flag",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"api",
+						"open",
+						"v1",
+						"{{SourceId}}",
+						"table",
+						"{{TableId}}",
+						"flag"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Hent dimensjoner",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}/api/open/v1/{{SourceId}}/table/{{TableId}}/dimension",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"api",
+						"open",
+						"v1",
+						"{{SourceId}}",
+						"table",
+						"{{TableId}}",
+						"dimension"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Hent spørring",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}/api/open/v1/{{SourceId}}/table/{{TableId}}/query",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"api",
+						"open",
+						"v1",
+						"{{SourceId}}",
+						"table",
+						"{{TableId}}",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Hent data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dimensions\": [\r\n        {\r\n            \"code\": \"GEO\",\r\n            \"filter\": \"item\",\r\n            \"values\": [\r\n                \"0\",\r\n                \"30\",\r\n                \"03\",\r\n                \"34\",\r\n                \"38\",\r\n                \"42\",\r\n                \"11\",\r\n                \"46\",\r\n                \"15\",\r\n                \"50\",\r\n                \"18\",\r\n                \"54\"\r\n            ]\r\n        },\r\n        {\r\n            \"code\": \"AAR\",\r\n            \"filter\": \"item\",\r\n            \"values\": [\r\n                \"2016_2016\",\r\n                \"2017_2017\",\r\n                \"2018_2018\",\r\n                \"2019_2019\",\r\n                \"2020_2020\",\r\n                \"2021_2021\"\r\n            ]\r\n        },\r\n        {\r\n            \"code\": \"MEASURE_TYPE\",\r\n            \"filter\": \"item\",\r\n            \"values\": [\r\n                \"pwc\",\r\n                \"SMR\"\r\n            ]\r\n        }\r\n    ],\r\n    \"response\": {\r\n        \"format\": \"json-stat2\",\r\n        \"maxRowCount\": 50000\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseUrl}}/api/open/v1/{{SourceId}}/table/{{TableId}}/data",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"api",
+						"open",
+						"v1",
+						"{{SourceId}}",
+						"table",
+						"{{TableId}}",
+						"data"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
