@@ -259,7 +259,13 @@ Status code 404 indicates that the data that was requested does not exist. Furth
 [Swagger definition for FHI Statistikk Open API](https://statistikk-data.fhi.no/swagger/index.html)
 
 ## Postman
-Import [FHI_Statistikk_Open_API.postman_collection.json](https://github.com/folkehelseinstituttet/Fhi.Statistikk.OpenAPI/tree/main/Code_samples/Postman/FHI_Statistikk_Open_API.postman_collection.json) into a workspace in [Postman](https://web.postman.co/). Add variables BaseUrl (https://statistikk-data.fhi.no/), SourceId (e.g. nokkel) and TableId (e.g. 1) as well to be able to send all the requests in the sample.
+Import [FHI_Statistikk_Open_API.postman_collection.json](https://github.com/folkehelseinstituttet/Fhi.Statistikk.OpenAPI/tree/main/Code_samples/Postman/FHI_Statistikk_Open_API.postman_collection.json) into a workspace in [Postman](https://web.postman.co/). 
+Add variables:
+ - BaseUrl (https://statistikk-data.fhi.no/)
+ - SourceId (e.g. nokkel) 
+ - TableId (e.g. 1) 
+
+to be able to send all the requests in the sample.
 
 ## C#
 [FHI.OpenApiClient](https://github.com/folkehelseinstituttet/Fhi.Statistikk.OpenAPI/tree/main/Code_samples/C%23/Fhi.OpenApiClient)
