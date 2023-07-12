@@ -29,6 +29,8 @@
     - [400 Bad Request](#400-bad-request)
     - [404 Not Found](#404-not-found)
 - [Code samples](#code-samples)
+  - [Swagger](#swagger-1)
+  - [Postman](#postman)
   - [C#](#c)
   - [Kotlin](#kotlin)
   - [Python](#python)
@@ -253,6 +255,18 @@ Status code 400 indicates that there was something wrong with the request. Furth
 Status code 404 indicates that the data that was requested does not exist. Further details about the error can be found in the status field in the response.
 
 # Code samples
+## Swagger
+[Swagger definition for FHI Statistikk Open API](https://statistikk-data.fhi.no/swagger/index.html)
+
+## Postman
+Import [FHI_Statistikk_Open_API.postman_collection.json](https://github.com/folkehelseinstituttet/Fhi.Statistikk.OpenAPI/tree/main/Code_samples/Postman/FHI_Statistikk_Open_API.postman_collection.json) into a workspace in [Postman](https://web.postman.co/). 
+Add variables:
+ - BaseUrl (https://statistikk-data.fhi.no/)
+ - SourceId (e.g. nokkel) 
+ - TableId (e.g. 1) 
+
+to be able to send all the requests in the sample.
+
 ## C#
 [FHI.OpenApiClient](https://github.com/folkehelseinstituttet/Fhi.Statistikk.OpenAPI/tree/main/Code_samples/C%23/Fhi.OpenApiClient)
 
