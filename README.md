@@ -34,6 +34,7 @@
   - [C#](#c)
   - [Kotlin](#kotlin)
   - [Python](#python)
+  - [React](#react)
 
 
 
@@ -275,3 +276,6 @@ to be able to send all the requests in the sample.
 
 ## Python
 [fhi_open_api_client.py](https://github.com/folkehelseinstituttet/Fhi.Statistikk.OpenAPI/tree/main/Code_samples/Python/fhi_open_api_client.py)
+
+## React
+[fhi_open_api_client](https://github.com/folkehelseinstituttet/Fhi.Statistikk.OpenAPI/tree/main/Code_samples/React/fhi_open_api_client/)
