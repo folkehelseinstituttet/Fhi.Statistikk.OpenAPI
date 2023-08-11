@@ -4,9 +4,6 @@
 To install dependencies run:
 ```npm install```
 
-## Available Scripts
-To start the application run:
-```npm start``` 
 
 ## Notes
 Must be run in secure mode (https):

@@ -1,27 +1,27 @@
-// TODO: cannot use
-const baseUrl = 'https://localhost:44388/api/open/v1';
-// const baseUrl = 'https://app-allvis-api-test.azurewebsites.net/api/open/v1';
+// TODO: cannot use this in prod due to CORS issues
+// const baseUrl = 'https://localhost:44388/api/open/v1';
+const baseUrl = 'https://app-allvis-api-test.azurewebsites.net/api/open/v1';
 const path = {
-    source: 'common/source',
-    table: 'table',
-    metadata: 'metadata',
-    dimension: 'dimension',
-    data: 'data',
-    flag: 'flag',
-    query: 'query',
+  source: 'common/source',
+  table: 'Table',
+  metadata: 'metadata',
+  dimension: 'dimension',
+  data: 'data',
+  flag: 'flag',
+  query: 'query',
 }
 
 const updateQueryToReturnAllMeasureTypesFilteredOnFirstCategory = (query) => {
-    if (!query.hasOwnProperty("Dimension") || !query.Dimensions) return;
-    query.Dimensions.forEach((dimension) => {
-        if (dimension.Code === "MEASURE_TYPE") {
-        dimension.Filter = "all"; //Supported filters are item, all and top
-        dimension.Values = ["*"];
-        } else {
-        dimension.Filter = "top"; //Supported filters are item, all and top
-        dimension.Values = ["1"];
-        }
-    });
+  if (!query.hasOwnProperty("Dimension") || !query.Dimensions) return;
+  query.Dimensions.forEach((dimension) => {
+    if (dimension.Code === "MEASURE_TYPE") {
+      dimension.Filter = "all"; //Supported filters are item, all and top
+      dimension.Values = ["*"];
+    } else {
+      dimension.Filter = "top"; //Supported filters are item, all and top
+      dimension.Values = ["1"];
+    }
+  });
 }
 
 export const getSources = async () => {
@@ -31,59 +31,55 @@ export const getSources = async () => {
 }
 
 export const getTables = async (sourceId, modifiedAfter) => {
-    let requestUrl = `${baseUrl}/${sourceId}/${path.table}`;
+  let requestUrl = `${baseUrl}/${sourceId}/${path.table}`;
 
-    if (modifiedAfter) {
-        requestUrl += `?modifiedAfter=${modifiedAfter.toISOString()}`;
-    }
+  if (modifiedAfter) {
+    requestUrl += `?modifiedAfter=${modifiedAfter.toISOString()}`;
+  }
 
-    const response = await fetch(requestUrl);
-    const tables = await response.json();
-    return tables;
+  const response = await fetch(requestUrl);
+  const tables = await response.json();
+  return tables;
 }
 
 export const getMetadata = async (sourceId, tableId) => {
-    const response = await fetch(`${baseUrl}/${sourceId}/${path.table}/${tableId}/${path.metadata}`);
-    const metadata = await response.json();
-    return metadata;
+  const response = await fetch(`${baseUrl}/${sourceId}/${path.table}/${tableId}/${path.metadata}`);
+  const metadata = await response.json();
+  return metadata;
 }
 
 export const getFlags = async (sourceId, tableId) => {
   const response = await fetch(`${baseUrl}/${sourceId}/${path.table}/${tableId}/${path.flag}`);
-    const flags = await response.json();
-    return flags;
+  const flags = await response.json();
+  return flags;
 }
 
 export const getDimensions = async (sourceId, tableId) => {
-    const response = await fetch(`${baseUrl}/${sourceId}/${path.dimension}/${tableId}/${path.dimension}`);
-    const dimensions = await response.json();
-    return dimensions;
+  const response = await fetch(`${baseUrl}/${sourceId}/${path.dimension}/${tableId}/${path.dimension}`);
+  const dimensions = await response.json();
+  return dimensions;
 }
 
 export const getQuery = async (sourceId, tableId) => {
-    const response = await fetch(`${baseUrl}/${sourceId}/${path.table}/${tableId}/${path.query}`);
-    const query = await response;
-    return query;
+  const response = await fetch(`${baseUrl}/${sourceId}/${path.table}/${tableId}/${path.query}`);
+  const query = await response.json();
+  return query;
 }
 
 
 export const getData = async (sourceId, tableId, query) => {
-    // if (!query?.response?.format) {
-    //     query.response.format = "csv3";     //Supported formats are json-stat2, csv2 and csv3
-    // }
-    // updateQueryToReturnAllMeasureTypesFilteredOnFirstCategory(query);
-
-    const dataRequest = JSON.stringify(query);
-
+  if (query["dimensions"]) {
     const response = await fetch(`${baseUrl}/${sourceId}/${path.table}/${tableId}/${path.data}`, {
-        headers: {
-            'Accept': "application/json, text/plain, */*",
-            'Content-Type': "application/json;charset=utf-8"
-        },
-        method: "POST",
-        body: dataRequest,
+      headers: {
+        'Accept': "application/json",
+        'Content-Type': "application/json"
+      },
+      method: "POST",
+      mode: "cors",
+      body: JSON.stringify(query),
     });
     const data = await response.json();
     return data;
+  }
 }
 
