@@ -1,6 +1,4 @@
-// TODO: cannot use this in prod due to CORS issues
-// const baseUrl = 'https://localhost:44388/api/open/v1';
-const baseUrl = 'https://app-allvis-api-test.azurewebsites.net/api/open/v1';
+const baseUrl = 'https://statistikk-data.fhi.no/api/open/v1';
 const path = {
   source: 'common/source',
   table: 'Table',
@@ -69,6 +67,7 @@ export const getQuery = async (sourceId, tableId) => {
 
 export const getData = async (sourceId, tableId, query) => {
   if (query["dimensions"]) {
+    query.response.maxRowCount = 10000000
     const response = await fetch(`${baseUrl}/${sourceId}/${path.table}/${tableId}/${path.data}`, {
       headers: {
         'Accept': "application/json",
