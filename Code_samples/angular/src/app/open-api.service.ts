@@ -13,8 +13,7 @@ import { Flag } from './models/flag.model';
   providedIn: 'root',
 })
 export class OpenApiService {
-  //apiUrl = 'https://statistikk-data.fhi.no/api/open/v1/'
-  apiUrl = 'https://app-allvis-api-dev.azurewebsites.net/api/open/v1/';
+  apiUrl = 'https://statistikk-data.fhi.no/api/open/v1/'
 
   constructor(private http: HttpClient) {}
 
