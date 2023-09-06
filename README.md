@@ -69,7 +69,7 @@ Each filter choice is called a dimension and the values that a dimension can hav
 The response from this endpoint can be copied and used as the request body for the 'Get data' endpoint to get the whole dataset (all values of the measures in the table), or adjusted to contain just subset of categories and measures and used to get the subset of the whole dataset. 
 ### Get dimensions
 The endpoint `/api/open/v1/{SourceId}/Table/{tableId}/dimension` can be used to get information about the dimensions and the corresponding categories for a table. 
-The response, in JSON format, contains the labels for all dimensions and categories for a table. 
+The response, in JSON format, contains the labels for all dimensions and categories for a table, as well as the frequencies of the categories and the expected frequency of the categories for a dimension.
 ### Get data
 The endpoint `/api/open/v1/{SourceId}/Table/{tableId}/data` can be used to get values of the measures in a table. The request body needs to be in JSON format where each dimension in the table is specified with a filter. 
 
