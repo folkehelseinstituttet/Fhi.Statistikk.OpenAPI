@@ -46,7 +46,7 @@
 FHI Statistikk Open API offer endpoints to get data for sources which have published their data using FHI Statistikk. Example sources ...
 
 ## Swagger
-The API is documented in [Swagger](https://statistikk-data.fhi.no/swagger/index.html?urls.primaryName=Allvis%20Open%20API). This page can also be used to pull data from the API.
+The API is documented in [Swagger](https://statistikk-data.fhi.no/swagger/index.html?urls.primaryName=Allvis%20Open%20API). This page can also be used to pull data from the API, but note that the Swagger interface have limitations when handling large data sets as response objects. 
 
 ## Endpoints
 ### Get sources
