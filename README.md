@@ -165,7 +165,13 @@ Each dimension, has both a code, e.g. "GEO" or "AAR", and a more readable label,
           1,
           1
       ],
-      "role": null,
+      "role": {
+        "time": null,
+        "geo": null,
+        "metric": [
+            "MEASURE_TYPE"
+        ]
+    },
       "dimension": {
           "GEO": {
               "label": "Geografi",
@@ -223,7 +229,15 @@ Each dimension, has both a code, e.g. "GEO" or "AAR", and a more readable label,
                   ],
                   "label": {
                       "BEFVEKST_ANT": "antall"
-                  }
+                  },
+                  "unit": {
+                    "BEFVEKST_ANT": {
+                        "decimals": null,
+                        "label": "antall",
+                        "symbol": null,
+                        "position": null
+                    }
+                 }
               }
           }
       },
@@ -264,7 +278,7 @@ Import [FHI_Statistikk_Open_API.postman_collection.json](https://github.com/folk
 Add variables:
  - BaseUrl (https://statistikk-data.fhi.no/)
  - SourceId (e.g. nokkel) 
- - TableId (e.g. 1) 
+ - TableId (e.g. 175) 
 
 to be able to send all the requests in the sample.
 

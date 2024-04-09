@@ -9,7 +9,7 @@ import { SourceInfo } from './models/sourceInfo.model';
 export class AppComponent implements OnInit {
   title = 'openApiClient';
   sourceId = 'nokkel';
-  tableId = 2;
+  tableId = 175;
   data: any;
   sources: SourceInfo[] | undefined
   tables: any;

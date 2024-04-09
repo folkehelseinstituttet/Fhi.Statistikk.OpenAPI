@@ -16,7 +16,7 @@ suspend fun main(args: Array<String>) {
     var modifiedTables = fhiOpenApiService.getTablesAsync(sourceId, lastPollTime)
 
     //Get metadata for a table
-    var tableId = 1
+    var tableId = 175
     var metadata = fhiOpenApiService.getMetadataAsync(sourceId, tableId)
 
     //Get flag values for a table
