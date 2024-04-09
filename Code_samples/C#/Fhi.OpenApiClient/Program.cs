@@ -44,7 +44,7 @@ var lastPollTime = new DateTime(2023, 6, 14);
 var modifiedTables = await fhiOpenApiService.GetTablesAsync(sourceId, lastPollTime);
 
 //Get metadata for a table
-var tableId = 1;
+var tableId = 175;
 var metadata = await fhiOpenApiService.GetMetadataAsync(sourceId, tableId);
 
 //Get flag values for a table

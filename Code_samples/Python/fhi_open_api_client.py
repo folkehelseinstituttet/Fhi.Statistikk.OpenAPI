@@ -57,7 +57,7 @@ async def main():
         modified_tables = await get_data_from_api_async(base_url + source_id + "/table?modifiedAfter=" + last_poll_time.strftime("%Y-%m-%d"))
 
         # Get metadata for a table
-        table_id = 1
+        table_id = 175
         metadata = await get_data_from_api_async(base_url + source_id + "/table/" + str(table_id) + "/metadata")
 
         # Get flag values for a table
