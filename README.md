@@ -292,4 +292,7 @@ to be able to send all the requests in the sample.
 [fhi_open_api_client.py](https://github.com/folkehelseinstituttet/Fhi.Statistikk.OpenAPI/tree/main/Code_samples/Python/fhi_open_api_client.py)
 
 ## React
-[fhi_open_api_client](https://github.com/folkehelseinstituttet/Fhi.Statistikk.OpenAPI/tree/main/Code_samples/React/fhi_open_api_client/)
+[fhi-open-api-client](https://github.com/folkehelseinstituttet/Fhi.Statistikk.OpenAPI/tree/main/Code_samples/React/fhi-open-api-client/)
+
+## Excel
+[README.md](https://github.com/folkehelseinstituttet/Fhi.Statistikk.OpenAPI/tree/main/Code_samples/Excel)
