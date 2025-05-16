@@ -6,7 +6,7 @@ Follow the steps below to fetch data from the Open API.
 ![Step 1](image.png)
 3. A new window will open. Choose "Advanced Editor"
 ![Step 2](image-1.png)
-4. Write Power Query code and run the query. Example queries can be fetched using the open API endpoint `api/open/v1/{sourceId}/Table/{tableId}/query`.
+1. Write Power Query code and run the query. Example queries can be fetched using the open API endpoint `api/open/v1/{sourceId}/Table/{tableId}/query`. Please refer to the [Swagger](../../README.md#swagger) and [Endpoints](../../README.md#endpoints) documentation for more information on fetching data and queries from the open API.
 
 Example code for table "Nemdbehandla aborter i pr.tusen (promille)":
 ```
