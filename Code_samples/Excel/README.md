@@ -6,9 +6,9 @@ Follow the steps below to fetch data from the Open API.
 ![Step 1](image.png)
 3. A new window will open. Choose "Advanced Editor"
 ![Step 2](image-1.png)
-1. Write Power Query code and run the query. Example queries can be fetched using the open API endpoint `api/open/v1/{sourceId}/Table/{tableId}/query`. Please refer to the [Swagger](../../README.md#swagger) and [Endpoints](../../README.md#endpoints) documentation for more information on fetching data and queries from the open API.
+4. Write Power Query code and run the query. Example queries can be fetched using the open API endpoint `api/open/v1/{sourceId}/Table/{tableId}/query`. Please refer to the [Swagger](../../README.md#swagger) and [Endpoints](../../README.md#endpoints) documentation for more information on fetching data and queries from the open API. If prompted for credentials, select "Anonymous" and click "Connect". The API does not require authentication.
 
-Example code for table "Nemdbehandla aborter i pr.tusen (promille)":
+Example code for select data in table "Nemdbehandla aborter i pr.tusen (promille)". Use this as a template and modify the `URL` and `jsonBody` as needed. Note the required double quotes in the JSON body.:
 ```
 let
     url="https://app-allvis-api-test.azurewebsites.net/api/open/v1/abr/Table/1134/data",
