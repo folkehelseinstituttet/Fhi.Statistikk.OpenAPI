@@ -6,61 +6,67 @@ Follow the steps below to fetch data from the Open API.
 ![Step 1](image.png)
 3. A new window will open. Choose "Advanced Editor"
 ![Step 2](image-1.png)
-1. Write Power Query code and run the query. Example queries can be fetched using the open API endpoint `api/open/v1/{sourceId}/Table/{tableId}/query`. Please refer to the [Swagger](../../README.md#swagger) and [Endpoints](../../README.md#endpoints) documentation for more information on fetching data and queries from the open API.
+4. Write Power Query code and run the query. Example queries can be fetched using the open API endpoint `api/open/v1/{sourceId}/Table/{tableId}/query`. Please refer to the [Swagger](../../README.md#swagger) and [Endpoints](../../README.md#endpoints) documentation for more information on fetching data and queries from the open API. If prompted for credentials, select "Anonymous" and click "Connect". The API does not require authentication.
 
-Example code for table "Nemdbehandla aborter i pr.tusen (promille)":
+Example code for select data in table "Nemdbehandla aborter i pr.tusen (promille)". Use this as a template and modify the `URL` and `jsonBody` as needed. Note the required double quotes in the JSON body. Response format should be `csv2`.:
 ```
 let
-    url="https://app-allvis-api-test.azurewebsites.net/api/open/v1/abr/Table/1134/data",
+    url="https://statistikk-data.fhi.no/api/open/v1/abr/Table/280/data",
     jsonBody= "{
-        ""dimensions"": [
+        "dimensions":
+        [
             {
-            ""code"": ""AARGANG"",
-            ""filter"": ""item"",
-            ""values"": [
-                ""2023""
-            ]
+                "filter": "item",
+                "code": "AARGANG"
+                "values":
+                [
+                    "2022",
+                    "2023",
+                    "2024"
+                ],
             },
             {
-            ""code"": ""TYPE_BEGJARING_K"",
-            ""filter"": ""item"",
-            ""values"": [
-                ""1"",
-                ""99"",
-                ""2""
-            ]
+                "filter": "item",
+                "code": "UTFORT_K"
+                "values":
+                [
+                    "99",
+                    "1",
+                    "2"
+                ],
             },
             {
-            ""code"": ""FEMAAR19_40_K"",
-            ""filter"": ""item"",
-            ""values"": [
-                ""99"",
-                ""1"",
-                ""2"",
-                ""3"",
-                ""4"",
-                ""5"",
-                ""6"",
-                ""9""
-            ]
+                "filter": "item",
+                "code": "TYPE_BEGJARING_K"
+                "values":
+                [
+                    "99"
+                ],
             },
             {
-            ""code"": ""MEASURE_TYPE"",
-            ""filter"": ""item"",
-            ""values"": [
-                ""ANTALL"",
-                ""PR1000_1549"",
-                ""ANDEL_ALDERSGRUPPER""
-            ]
+                "filter": "item",
+                "code": "SVLEN_K"
+                "values":
+                [
+                    "99"
+                ],
+            },
+            {
+                "filter": "item",
+                "code": "MEASURE_TYPE"
+                "values":
+                [
+                    "ANTALL"
+                ],
             }
         ],
-        ""response"": {
-            ""format"": ""csv2"",
-            ""maxRowCount"": 50000
+        "response": {
+            "format": "csv2",
+            "maxRowCount": 50000
         }
     }",
     
-    WebCall  =  Web.Contents(url, [Headers=[#"Content-Type"="application/json"], Content=Text.ToBinary(jsonBody)]),
+    WebCall = Web.Contents(url, [Headers=[#"Content-Type"="application/json"], Content=Text.ToBinary(jsonBody)]),
     
     LinesFromBinary = Lines.FromBinary(WebCall),
     ConvertToTable = Table.FromList(LinesFromBinary, Splitter.SplitTextByDelimiter(";"), null, null, ExtraValues.Error)  
