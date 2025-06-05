@@ -13,56 +13,56 @@ Example code for select data in table "Nemdbehandla aborter i pr.tusen (promille
 let
     url="https://statistikk-data.fhi.no/api/open/v1/abr/Table/280/data",
     jsonBody= "{
-        "dimensions":
+        ""dimensions"":
         [
             {
-                "filter": "item",
-                "code": "AARGANG"
-                "values":
+                ""filter"": ""item"",
+                ""code"": ""AARGANG"",
+                ""values"":
                 [
-                    "2022",
-                    "2023",
-                    "2024"
-                ],
+                    ""2022"",
+                    ""2023"",
+                    ""2024""
+                ]
             },
             {
-                "filter": "item",
-                "code": "UTFORT_K"
-                "values":
+                ""filter"": ""item"",
+                ""code"": ""UTFORT_K"",
+                ""values"":
                 [
-                    "99",
-                    "1",
-                    "2"
-                ],
+                    ""99"",
+                    ""1"",
+                    ""2""
+                ]
             },
             {
-                "filter": "item",
-                "code": "TYPE_BEGJARING_K"
-                "values":
+                ""filter"": ""item"",
+                ""code"": ""TYPE_BEGJARING_K"",
+                ""values"":
                 [
-                    "99"
-                ],
+                    ""99""
+                ]
             },
             {
-                "filter": "item",
-                "code": "SVLEN_K"
-                "values":
+                ""filter"": ""item"",
+                ""code"": ""SVLEN_K"",
+                ""values"":
                 [
-                    "99"
-                ],
+                    ""99""
+                ]
             },
             {
-                "filter": "item",
-                "code": "MEASURE_TYPE"
-                "values":
+                ""filter"": ""item"",
+                ""code"": ""MEASURE_TYPE"",
+                ""values"":
                 [
-                    "ANTALL"
-                ],
+                    ""ANTALL""
+                ]
             }
         ],
-        "response": {
-            "format": "csv2",
-            "maxRowCount": 50000
+        ""response"": {
+            ""format"": ""csv2"",
+            ""maxRowCount"": 50000
         }
     }",
     
