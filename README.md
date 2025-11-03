@@ -55,7 +55,7 @@ The endpoint `/api/open/v1/Common/source` can be used to get a list of the diffe
 
 The Id field in the response from this endpoint is used as the SourceId parameter in all other endpoints in the API.
 ### Get tables
-The endpoint `/api/open/v1/{SourceId}/table` can be used to get a list of published tables from a source. An optional parameter, modifiedAfter, can be used to only list tables modified after a specific date.
+The endpoint `/api/open/v1/{SourceId}/table` can be used to get a list of published tables from a source. An optional parameter, modifiedAfter, can be used to only list tables modified after a specific date. A table is considered modified if there have been any changes to data, metadata or labels. Note that this is different from the updated property in the data endpoint, which represents the publication date of the data.
 
 The TableId field in the response from this endpoint is used together with SourceId as parameters in all the endpoints described below.
 ### Get table
@@ -139,7 +139,7 @@ The data-endpoint will return an error if the number of values to be returned is
 Returns a JSON object that follows the [JSON-stat](https://json-stat.org/format/) standard. This is a format for showing statistical tables. 
 Responses from queries in this format can be pasted into the [JSON-stat explorer](http://jsonstat.com/explorer/) to view data in a more readable format. 
 
-Each dimension, has both a code, e.g. "GEO" or "AAR", and a more readable label, e.g. "Geografi" or "År". Dimension has a category section with an index list and label list. The index list contains codes for the categories returned, e.g. "03" or "2020_2020". The label list contains readable labels for the categories returned, e.g. "Oslo" and "2020".
+Each dimension, has both a code, e.g. "GEO" or "AAR", and a more readable label, e.g. "Geografi" or "År". Dimension has a category section with an index list and label list. The index list contains codes for the categories returned, e.g. "03" or "2020_2020". The label list contains readable labels for the categories returned, e.g. "Oslo" and "2020". Note that the "Updated" field in the response indicates the publication date of the data and not when data itself was last modified.
 
 <details>
   <summary>Example of a jsonstat response</summary>
