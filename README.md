@@ -23,7 +23,7 @@
           - [csv2](#csv2)
           - [csv3](#csv3)
           - [parquet](#parquet)
-    - [Special sympols/flags](#special-sympolsflags)
+    - [Special symbols/flags](#special-symbolsflags)
     - [Get metadata](#get-metadata)
   - [Status codes/Error messages](#status-codeserror-messages)
     - [200 Ok](#200-ok)
