@@ -14,6 +14,7 @@
     - [Get data](#get-data)
       - [Filters](#filters)
         - [Item](#item)
+        - [Bottom](#bottom)
         - [Top](#top)
         - [All](#all)
       - [Response](#response)
@@ -125,7 +126,8 @@ The supported filters are 'item', 'top' and 'all'. All dimension must have one a
 
 ##### Item
 This filter specifies exactly which catagories to pull data for. You must list at least one category, but it is possible to list up to all categories. 
-
+##### Bottom
+This filter specifies the number of categories to pull data for by supplying an integer with value 1 or larger. For example, if the integer 5 is provided, data will be pulled for the last 5 categories.
 ##### Top
 This filter specifies the number of categories to pull data for by supplying an integer with value 1 or larger. For example, if the integer 5 is provided, data will be pulled for the first 5 categories.
 ##### All
