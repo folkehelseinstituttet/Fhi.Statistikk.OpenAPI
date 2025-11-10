@@ -22,7 +22,8 @@
           - [json-stat2](#json-stat2)
           - [csv2](#csv2)
           - [csv3](#csv3)
-    - [Special sympols/flags](#special-sympolsflags)
+          - [parquet](#parquet)
+    - [Special symbols/flags](#special-symbolsflags)
     - [Get metadata](#get-metadata)
   - [Status codes/Error messages](#status-codeserror-messages)
     - [200 Ok](#200-ok)
@@ -256,7 +257,9 @@ Each dimension, has both a code, e.g. "GEO" or "AAR", and a more readable label,
 ###### csv2
 Returns csv-file with readable lables for dimensions and measures. 
 ###### csv3
-Returns csv-file with codes for dimensions and measures. 
+Returns csv-file with codes for dimensions and measures.
+###### parquet
+Returns parquet-file with codes for dimensions and measures. 
 ### Special sympols/flags
 The endpoint `/api/open/v1/{SourceId}/Table/{tableId}/flag` can be used to get information about the special sympols or flags which are used for certain combinations of categories where the measure values can not be shown. Typical reasons why a value is flagged are missing data, the value is not possible to calculate or it has been removed for privacy considerations.
 ### Get metadata
